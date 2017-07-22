@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +78,26 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setFocusable(false);
     }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 1) {
+            fragmentManager.popBackStackImmediate();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setMessage("Дійсно закрити програму?")
+                    .setCancelable(false)
+                    .setPositiveButton("Так",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+                                    finish();
+                                }
+                            }).setNegativeButton("Ні", null).show();
+        }
+    }
+
 
     public void cleraNumber(View view) {
 
