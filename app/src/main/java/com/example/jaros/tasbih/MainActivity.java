@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void editNumber(View view){
+    public void editNumber(View view) {
         TextView textView = (TextView) findViewById(R.id.editText);
 
         String s_value = textView.getText().toString();
@@ -39,30 +39,37 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setText(String.valueOf(i_value));
 
-        if (i_value == 80){
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(1000);
+        if (i_value == 80) {
 
             textView.setTextColor(Color.parseColor("#FFF4E003"));
-        }
+            vibrator.vibrate(1000);
 
-        if (i_value == 100){
+        } else if (i_value == 100) {
+
             textView.setText(String.valueOf(1));
             textView.setTextColor(Color.parseColor("#FF000000"));
+            vibrator.vibrate(2000);
+
+        } else {
+
+            vibrator.vibrate(100);
+
         }
+
 
         textView.setFocusable(false);
     }
 
-    public void cleraNumber(View view){
+    public void cleraNumber(View view) {
 
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(2000);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Увага")
-                .setMessage("Очитити кількість раз?")
+                .setMessage("Очистити кількість раз?")
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
