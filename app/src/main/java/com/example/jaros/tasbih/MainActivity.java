@@ -13,13 +13,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView editText;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -47,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void editNumber(View view) {
+
+        editText = (EditText) findViewById(R.id.editText);
+
         TextView textView = (TextView) findViewById(R.id.editText);
 
         String s_value = textView.getText().toString();
@@ -91,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        editText.setText(savedInstanceState.getString("textView"));
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("textView", editText.getText().toString());
     }
 
 }
