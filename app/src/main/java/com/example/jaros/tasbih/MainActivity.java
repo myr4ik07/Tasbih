@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Увага")
-                .setMessage("Очистити кількість раз?")
+                .setMessage("Очистити лічильник?")
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
