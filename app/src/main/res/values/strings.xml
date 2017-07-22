@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Тасбіх</string>
     <string name="_1">1</string>
+    <string name="info">Салават</string>
+    <string name="about_text">
+    Текст;\n
+    Текст:\n
+    Текст <b>Текст</b>\n
+    Текст <b>Текст</b> - Текст,\n
+    <b>Текст</b> - Текст.</string>
+    <string name="about_title">Салават</string>
 </resources>

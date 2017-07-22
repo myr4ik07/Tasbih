@@ -3,6 +3,7 @@ package com.example.jaros.tasbih;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,10 +14,25 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,22 +58,15 @@ public class MainActivity extends AppCompatActivity {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         if (i_value == 80) {
-
             textView.setTextColor(Color.parseColor("#FFF4E003"));
             vibrator.vibrate(1000);
-
         } else if (i_value == 100) {
-
             textView.setText(String.valueOf(1));
             textView.setTextColor(Color.parseColor("#FF000000"));
             vibrator.vibrate(2000);
-
         } else {
-
             vibrator.vibrate(100);
-
         }
-
 
         textView.setFocusable(false);
     }
