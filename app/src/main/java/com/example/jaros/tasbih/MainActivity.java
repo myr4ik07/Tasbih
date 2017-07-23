@@ -25,6 +25,19 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView editText;
+    Vibrator vibrator;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+
+        editText = (TextView) findViewById(R.id.editText);
+        editText.setFocusable(false);
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -37,46 +50,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-
-        TextView textView = (TextView) findViewById(R.id.editText);
-        textView.setFocusable(false);
-
-    }
-
-    public void editNumber(View view) {
-
-        editText = (EditText) findViewById(R.id.editText);
-
-        TextView textView = (TextView) findViewById(R.id.editText);
-
-        String s_value = textView.getText().toString();
-        int i_value = Integer.parseInt(s_value);
-        i_value++;
-
-        textView.setText(String.valueOf(i_value));
-
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        if (i_value == 80) {
-            textView.setTextColor(Color.parseColor("#FFF4E003"));
-            vibrator.vibrate(1000);
-        } else if (i_value == 100) {
-            textView.setText(String.valueOf(1));
-            textView.setTextColor(Color.parseColor("#FF000000"));
-            vibrator.vibrate(2000);
-        } else {
-            vibrator.vibrate(100);
-        }
-
-        textView.setFocusable(false);
     }
 
     @Override
@@ -98,10 +71,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void editNumber(View view) {
+
+        editText = (EditText) findViewById(R.id.editText);
+
+        String s_value = editText.getText().toString();
+        int i_value = Integer.parseInt(s_value);
+        i_value++;
+
+        editText.setText(String.valueOf(i_value));
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (i_value == 80) {
+            editText.setTextColor(Color.parseColor("#FFF4E003"));
+            vibrator.vibrate(1000);
+        } else if (i_value == 100) {
+            editText.setText(String.valueOf(1));
+            editText.setTextColor(Color.parseColor("#FF000000"));
+            vibrator.vibrate(2000);
+        } else {
+            vibrator.vibrate(100);
+        }
+
+        editText.setFocusable(false);
+    }
 
     public void cleraNumber(View view) {
 
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(2000);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -110,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        TextView textView2 = (TextView) findViewById(R.id.editText);
-
-                        textView2.setText(String.valueOf(1));
-                        textView2.setTextColor(Color.parseColor("#FF000000"));
+                        editText = (EditText) findViewById(R.id.editText);
+                        editText.setText(String.valueOf(1));
+                        editText.setTextColor(Color.parseColor("#FF000000"));
                     }
                 });
         AlertDialog alertDialog = builder.create();
