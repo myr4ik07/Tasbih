@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void editNumber(View view) {
 
-        editText = (EditText) findViewById(R.id.editText);
+        editText = (TextView) findViewById(R.id.editText);
 
         String s_value = editText.getText().toString();
         int i_value = Integer.parseInt(s_value);
@@ -84,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         if (i_value == 80) {
-            editText.setTextColor(Color.parseColor("#FFF4E003"));
-            vibrator.vibrate(1000);
+//            editText.setTextColor(Color.parseColor("#FFF4E003"));
+//            vibrator.vibrate(1000);
         } else if (i_value == 100) {
-            editText.setText(String.valueOf(1));
-            editText.setTextColor(Color.parseColor("#FF000000"));
-            vibrator.vibrate(2000);
+            editText.setText(String.valueOf(0));
+//            editText.setTextColor(Color.parseColor("#FF000000"));
+            vibrator.vibrate(1000);
         } else {
             vibrator.vibrate(100);
         }
@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        editText = (EditText) findViewById(R.id.editText);
-                        editText.setText(String.valueOf(1));
-                        editText.setTextColor(Color.parseColor("#FF000000"));
+                        editText = (TextView) findViewById(R.id.editText);
+                        editText.setText(String.valueOf(0));
+//                        editText.setTextColor(Color.parseColor("#FF000000"));
                     }
                 });
         AlertDialog alertDialog = builder.create();
