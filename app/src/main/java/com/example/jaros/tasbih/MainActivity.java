@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             int i2_value = Integer.parseInt(s2_value);
             i2_value++;
             textView.setText(String.valueOf(i2_value));
-            textView.setTextColor(Color.parseColor("#FFF4E003"));
+//            textView.setTextColor(Color.parseColor("#FFF4E003"));
 
             vibrator.vibrate(1000);
         } else {
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         editText.setText(String.valueOf(0));
                         textView.setText(String.valueOf(0));
 
-                        textView.setTextColor(Color.parseColor("#FF000000"));
+//                        textView.setTextColor(Color.parseColor("#FF000000"));
                     }
                 });
         AlertDialog alertDialog = builder.create();
