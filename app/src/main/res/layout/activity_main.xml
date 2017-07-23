@@ -64,4 +64,17 @@
         app:srcCompat="@drawable/button2"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="36sp"
+        tools:ignore="HardcodedText,RtlHardcoded"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        android:layout_marginBottom="-20dp"
+        app:layout_constraintLeft_toRightOf="@+id/editText"
+        android:layout_marginLeft="8dp" />
+
 </android.support.constraint.ConstraintLayout>

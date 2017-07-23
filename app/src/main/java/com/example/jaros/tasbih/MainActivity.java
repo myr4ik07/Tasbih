@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView editText;
+    TextView editText, textView;
     Vibrator vibrator;
 
     @Override
@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
         editText = (TextView) findViewById(R.id.editText);
+        textView = (TextView) findViewById(R.id.textView);
+
+        textView.setFocusable(false);
         editText.setFocusable(false);
 
     }
@@ -73,28 +76,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void editNumber(View view) {
 
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         editText = (TextView) findViewById(R.id.editText);
+        textView = (TextView) findViewById(R.id.textView);
 
         String s_value = editText.getText().toString();
         int i_value = Integer.parseInt(s_value);
         i_value++;
-
         editText.setText(String.valueOf(i_value));
-
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         if (i_value == 80) {
 //            editText.setTextColor(Color.parseColor("#FFF4E003"));
 //            vibrator.vibrate(1000);
         } else if (i_value == 100) {
             editText.setText(String.valueOf(0));
-//            editText.setTextColor(Color.parseColor("#FF000000"));
+
+            String s2_value = textView.getText().toString();
+            int i2_value = Integer.parseInt(s2_value);
+            i2_value++;
+            textView.setText(String.valueOf(i2_value));
+            textView.setTextColor(Color.parseColor("#FFF4E003"));
+
             vibrator.vibrate(1000);
         } else {
             vibrator.vibrate(100);
         }
 
         editText.setFocusable(false);
+        textView.setFocusable(false);
     }
 
     public void cleraNumber(View view) {
@@ -108,9 +117,14 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         editText = (TextView) findViewById(R.id.editText);
+                        textView = (TextView) findViewById(R.id.textView);
+
                         editText.setText(String.valueOf(0));
-//                        editText.setTextColor(Color.parseColor("#FF000000"));
+                        textView.setText(String.valueOf(0));
+
+                        textView.setTextColor(Color.parseColor("#FF000000"));
                     }
                 });
         AlertDialog alertDialog = builder.create();
@@ -121,11 +135,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         editText.setText(savedInstanceState.getString("textView"));
+        textView.setText(savedInstanceState.getString("textView"));
     }
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("textView", editText.getText().toString());
+        outState.putString("textView", textView.getText().toString());
     }
 
 }
