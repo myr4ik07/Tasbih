@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Vibrator;
-import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +19,17 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity<checkBo1> extends AppCompatActivity {
+public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatActivity {
 
     TextView editText, textView;
     Vibrator vibrator;
     CheckBox checkBox;
-    CheckBox checkBo1;
+
+    int mCounter;
+    int i_save;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_COUNTER = "counter";
+    private SharedPreferences mSettings;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -33,20 +39,21 @@ public class MainActivity<checkBo1> extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
         editText = (TextView) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
 
         textView.setFocusable(false);
         editText.setFocusable(false);
-
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-        switch(id){
-            case R.id.page1 :
+        switch (id) {
+            case R.id.page1:
                 Intent page1 = new Intent(MainActivity.this, Page1Activity.class);
                 startActivity(page1);
                 return true;
@@ -67,6 +74,7 @@ public class MainActivity<checkBo1> extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 1) {
             fragmentManager.popBackStackImmediate();
@@ -97,8 +105,17 @@ public class MainActivity<checkBo1> extends AppCompatActivity {
         i_value++;
         editText.setText(String.valueOf(i_value));
 
+        if (checkBox.isChecked()) {
+            //зберігаємо в налаштування
+            i_save = 1 + getCount();
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putInt(APP_PREFERENCES_COUNTER, i_save);
+            editor.apply();
+        }
+
+        //збільшуємо лічильник
         if (i_value == 80 && (!checkBox.isChecked())) {
-                vibrator.vibrate(500);
+            vibrator.vibrate(500);
         } else if (i_value == 100) {
             editText.setText(String.valueOf(0));
             String s2_value = textView.getText().toString();
@@ -147,6 +164,23 @@ public class MainActivity<checkBo1> extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString("textView", editText.getText().toString());
         outState.putString("textView", textView.getText().toString());
+    }
+
+    public void vieweSumm(View view) {
+        if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
+            mCounter = getCount();
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Всього прочитано " + mCounter + " кількість раз", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    int getCount() {
+        int count = 0;
+        if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
+            count = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
+        }
+        return count;
     }
 
 }
