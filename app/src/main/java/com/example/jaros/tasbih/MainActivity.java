@@ -1,32 +1,31 @@
 package com.example.jaros.tasbih;
 
-import android.app.Service;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<checkBo1> extends AppCompatActivity {
 
     TextView editText, textView;
     Vibrator vibrator;
+    CheckBox checkBox;
+    CheckBox checkBo1;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-        startActivity(intent);
+
+        int id = item.getItemId();
+        switch(id){
+            case R.id.page1 :
+                Intent page1 = new Intent(MainActivity.this, Page1Activity.class);
+                startActivity(page1);
+                return true;
+            case R.id.page2:
+                Intent page2 = new Intent(MainActivity.this, Page2Activity.class);
+                startActivity(page2);
+                return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -80,13 +90,15 @@ public class MainActivity extends AppCompatActivity {
         editText = (TextView) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
 
+        checkBox = (CheckBox) findViewById(R.id.checkBox); //Таhліль
+
         String s_value = editText.getText().toString();
         int i_value = Integer.parseInt(s_value);
         i_value++;
         editText.setText(String.valueOf(i_value));
 
-        if (i_value == 80) {
-            vibrator.vibrate(500);
+        if (i_value == 80 && (!checkBox.isChecked())) {
+                vibrator.vibrate(500);
         } else if (i_value == 100) {
             editText.setText(String.valueOf(0));
             String s2_value = textView.getText().toString();

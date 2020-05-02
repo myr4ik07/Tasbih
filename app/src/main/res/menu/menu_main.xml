@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/info"
+        android:id="@+id/page1"
+        android:title="@string/page1"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/page2"
+        android:title="@string/page2"
+        app:showAsAction="never" />
+
 </menu>
