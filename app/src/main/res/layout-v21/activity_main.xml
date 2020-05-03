@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:buttonTint="@color/colorAccent"
-    tools:context="com.example.jaros.tasbih.MainActivity" tools:targetApi="lollipop">
+    tools:context="com.example.jaros.tasbih.MainActivity">
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -57,40 +57,43 @@
         android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="cleraNumber"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/button2"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:layout_editor_absoluteX="325dp" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="49dp"
-        android:layout_height="53dp"
+        android:layout_width="44dp"
+        android:layout_height="57dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="vieweSumm"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
         app:srcCompat="@android:drawable/ic_dialog_info"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:layout_editor_absoluteX="261dp" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="44dp"
         android:layout_height="43dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="resetCountsave"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
         app:srcCompat="@android:drawable/ic_menu_rotate"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:layout_editor_absoluteX="209dp" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <TextView
         android:id="@+id/textView"

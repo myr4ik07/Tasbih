@@ -97,7 +97,6 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         editText = (TextView) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
-
         checkBox = (CheckBox) findViewById(R.id.checkBox); //Таhліль
 
         String s_value = editText.getText().toString();
@@ -132,13 +131,11 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
     }
 
     public void cleraNumber(View view) {
-
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
+        goVibrate_2000ms();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Увага")
-                .setMessage("Очистити лічильник?")
+                .setMessage("Очистити поточний лічильник?")
                 .setNegativeButton("Так", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -151,7 +148,6 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -168,10 +164,7 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
 
     public void vieweSumm(View view) {
         if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
-            mCounter = getCount();
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Всього прочитано " + mCounter + " кількість раз", Toast.LENGTH_SHORT);
-            toast.show();
+            getCountSave();
         }
     }
 
@@ -181,6 +174,55 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
             count = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
         }
         return count;
+    }
+
+    public void  changeCheckBox(View view) {
+        checkBox = (CheckBox) findViewById(R.id.checkBox); //Таhліль
+        goVibrate_2000ms();
+        if (checkBox.isChecked()) {
+            showMessage("Підрахунок Таhліль ВІМКНЕНО!");
+        }
+        else {
+            showMessage("Підрахунок Таhліль ВИМКНЕНО!");
+        }
+
+    }
+
+    void showMessage(String string) {
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
+    }
+
+    void goVibrate_2000ms() {
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(2000);
+    }
+
+    public void resetCountsave(View view) {
+        goVibrate_2000ms();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Увага")
+                .setMessage("Очистити лічильник збережених раніше данних?")
+                .setNegativeButton("Так", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putInt(APP_PREFERENCES_COUNTER, 0);
+                        editor.apply();
+
+                        getCountSave();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    void getCountSave() {
+        mCounter = getCount();
+        showMessage("Очищено! \n Всього прочитано " + mCounter + " кількість раз");
+//        Toast toast = Toast.makeText(getApplicationContext(),
+//                "Очищено! \n Всього прочитано " + mCounter + " кількість раз", Toast.LENGTH_SHORT);
+//        toast.show();
     }
 
 }
