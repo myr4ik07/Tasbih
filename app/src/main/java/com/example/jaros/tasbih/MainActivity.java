@@ -210,7 +210,7 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
                         editor.putInt(APP_PREFERENCES_COUNTER, 0);
                         editor.apply();
 
-                        getCountSave();
+                        showMessage("Очищено!");
                     }
                 });
         AlertDialog alertDialog = builder.create();
@@ -219,10 +219,7 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
 
     void getCountSave() {
         mCounter = getCount();
-        showMessage("Очищено! \n Всього прочитано " + mCounter + " кількість раз");
-//        Toast toast = Toast.makeText(getApplicationContext(),
-//                "Очищено! \n Всього прочитано " + mCounter + " кількість раз", Toast.LENGTH_SHORT);
-//        toast.show();
+        showMessage("Всього прочитано " + mCounter + " кількість раз");
     }
 
 }
