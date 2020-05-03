@@ -28,4 +28,5 @@
 Добавлена кнопка очищения ранее сохраненного количества Таhлиля.
 
 Страница со скриншотами - https://copyraite.blogspot.com/2018/01/blog-post_36.html
+
 Скачать .apk - https://1drv.ms/u/s!AtsDS13e1cbbheNUlI4OL1jMtNooqA?e=lagShc
