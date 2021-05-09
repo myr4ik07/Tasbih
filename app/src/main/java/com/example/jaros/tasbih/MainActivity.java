@@ -12,16 +12,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatActivity {
 
     TextView editText, textView;
+    EditText t_enter_number;
     Vibrator vibrator;
     CheckBox checkBox;
 
@@ -43,9 +46,11 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
 
         editText = (TextView) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
+        t_enter_number = (EditText) findViewById(R.id.t_enter_number);
 
         textView.setFocusable(false);
         editText.setFocusable(false);
+//        t_enter_number.setFocusable(false);
     }
 
     @Override
@@ -176,13 +181,12 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
         return count;
     }
 
-    public void  changeCheckBox(View view) {
+    public void changeCheckBox(View view) {
         checkBox = (CheckBox) findViewById(R.id.checkBox); //Таhліль
         goVibrate_2000ms();
         if (checkBox.isChecked()) {
             showMessage("Підрахунок Таhліль ВІМКНЕНО!");
-        }
-        else {
+        } else {
             showMessage("Підрахунок Таhліль ВИМКНЕНО!");
         }
 
@@ -222,4 +226,104 @@ public class MainActivity<checkBo1, APP_PREFERENCES_COUNTER> extends AppCompatAc
         showMessage("Всього прочитано " + mCounter + " кількість раз");
     }
 
+    public void add_t(View view) {
+
+        changeCheckBox("add_type");
+
+    }
+
+    public void add_t2(View view) {
+
+        changeCheckBox("minus_type");
+
+    }
+
+    void changeCheckBox(String type) {
+
+        String enterValueString;
+
+        try {
+            enterValueString = (String) t_enter_number.getText().toString();
+            if (enterValueString.isEmpty()) {
+                showMessage("Введено невірний формат значення");
+                goVibrate_2000ms();
+                goVibrate_2000ms();
+                return;
+            }
+        } catch (Exception e) {
+            showMessage("Введено невірний формат значення");
+            goVibrate_2000ms();
+            goVibrate_2000ms();
+            return;
+        }
+
+        int enterValueInt;
+
+        try {
+            enterValueInt = Integer.parseInt(enterValueString.trim());
+        } catch (NumberFormatException e) {
+            showMessage("Введено невірний формат значення");
+            goVibrate_2000ms();
+            goVibrate_2000ms();
+            return;
+        }
+
+        if (enterValueInt == 0) {
+            showMessage("Введено невірний формат значення");
+            goVibrate_2000ms();
+            goVibrate_2000ms();
+            return;
+        }
+
+        goVibrate_2000ms();
+
+        String typeString, typeString2, typeString3;
+        if (type == "add_type") {
+            typeString = "добавлено";
+            typeString2 = "Добавити";
+            typeString3 = "До";
+        } else {
+            typeString = "віднято";
+            typeString2 = "Відняти";
+            typeString3 = "Від";
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Увага")
+                .setMessage(typeString3 + " збереженого раніше значення Tahліля буде "+typeString+" значення " + enterValueInt + " "+typeString2+"?")
+                .setNegativeButton("Так", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        checkBox = (CheckBox) findViewById(R.id.checkBox); //Таhліль
+                        if (checkBox.isChecked()) {
+
+                            int previousValue = getCount();
+                            int intResultValue;
+
+                            if (type == "add_type") {
+                                intResultValue = previousValue + enterValueInt;
+                            } else {
+                                intResultValue = previousValue - enterValueInt;
+                            }
+
+                            SharedPreferences.Editor editor = mSettings.edit();
+                            editor.putInt(APP_PREFERENCES_COUNTER, intResultValue);
+                            editor.apply();
+
+                            showMessage("Успішно "+typeString+"!");
+
+                            if (mSettings.contains(APP_PREFERENCES_COUNTER)) {
+                                getCountSave();
+                                t_enter_number.setText("");
+                            }
+                        } else {
+                            showMessage("З початку потрібно активувати галку Таhліль");
+                        }
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
 }

@@ -39,4 +39,7 @@
     <string name="todo">TODO</string>
     <string name="page3">Історія Таhліль</string>
     <string name="b1">Всього прочитано Таhліль</string>
+    <string name="add_t">+</string>
+    <string name="add_t2">-</string>
+    <string name="t_enter_number"></string>
 </resources>

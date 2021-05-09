@@ -9,34 +9,63 @@
     android:buttonTint="@color/colorAccent"
     tools:context="com.example.jaros.tasbih.MainActivity">
 
+    <EditText
+        android:id="@+id/t_enter_number"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:hint="@string/t_enter_number"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:text="@string/t_enter_number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
+        app:layout_constraintStart_toEndOf="@+id/add_t4"
+        tools:text="@string/t_enter_number" />
+
+    <Button
+        android:id="@+id/add_t3"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        android:onClick="add_t"
+        android:text="@string/add_t"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_t4"
+        app:layout_constraintStart_toEndOf="@+id/checkBox" />
+
+    <Button
+        android:id="@+id/add_t4"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        android:onClick="add_t2"
+        android:text="@string/add_t2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/t_enter_number"
+        app:layout_constraintStart_toEndOf="@+id/add_t3" />
+
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="280dp"
-        android:layout_height="259dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="375dp"
+        android:layout_height="420dp"
+        android:layout_marginTop="11dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="editNumber"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:srcCompat="@drawable/button1"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/editText"
-        android:layout_width="170dp"
-        android:layout_height="157dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="169dp"
+        android:layout_height="166dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="number"
@@ -46,9 +75,8 @@
         android:textColorHint="@color/colorAccent"
         android:textColorLink="@color/colorAccent"
         android:textSize="140dp"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,LabelFor,SpUsage,TextViewEdits"
         tools:text="0" />
@@ -57,14 +85,12 @@
         android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="cleraNumber"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
         app:srcCompat="@drawable/button2"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -72,12 +98,12 @@
         android:id="@+id/imageButton4"
         android:layout_width="44dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="vieweSumm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintStart_toEndOf="@+id/imageButton5"
         app:srcCompat="@android:drawable/ic_dialog_info"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -85,22 +111,23 @@
         android:id="@+id/imageButton5"
         android:layout_width="44dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="5dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="resetCountsave"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/t_enter_number"
         app:srcCompat="@android:drawable/ic_menu_rotate"
         tools:ignore="ContentDescription,RtlHardcoded" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_width="103dp"
+        android:layout_height="53dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="15dp"
         android:gravity="center|left"
         android:text="0"
         android:textColor="@color/colorAccent"
@@ -108,17 +135,15 @@
         android:textColorHint="@color/colorAccent"
         android:textColorLink="@color/colorAccent"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/editText"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="106dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="8dp"
         android:onClick="changeCheckBox"
         android:scrollbarThumbHorizontal="@color/colorAccent"
         android:scrollbarThumbVertical="@color/colorAccent"
@@ -129,6 +154,7 @@
         android:textColorLink="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toStartOf="@+id/add_t3"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
