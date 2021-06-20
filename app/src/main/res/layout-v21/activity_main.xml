@@ -7,42 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:buttonTint="@color/colorAccent"
-    tools:context="com.example.jaros.tasbih.MainActivity">
-
-    <EditText
-        android:id="@+id/t_enter_number"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="5dp"
-        android:ems="10"
-        android:hint="@string/t_enter_number"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:text="@string/t_enter_number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
-        app:layout_constraintStart_toEndOf="@+id/add_t4"
-        tools:text="@string/t_enter_number" />
-
-    <Button
-        android:id="@+id/add_t3"
-        android:layout_width="51dp"
-        android:layout_height="45dp"
-        android:onClick="add_t"
-        android:text="@string/add_t"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_t4"
-        app:layout_constraintStart_toEndOf="@+id/checkBox" />
-
-    <Button
-        android:id="@+id/add_t4"
-        android:layout_width="51dp"
-        android:layout_height="45dp"
-        android:onClick="add_t2"
-        android:text="@string/add_t2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/t_enter_number"
-        app:layout_constraintStart_toEndOf="@+id/add_t3" />
+    tools:context="com.example.jaros.tasbih.MainActivity"
+    tools:targetApi="lollipop">
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -53,8 +19,6 @@
         android:contentDescription=""
         android:onClick="editNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:srcCompat="@drawable/button1"
@@ -75,7 +39,6 @@
         android:textColorHint="@color/colorAccent"
         android:textColorLink="@color/colorAccent"
         android:textSize="140dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,LabelFor,SpUsage,TextViewEdits"
@@ -96,8 +59,8 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="44dp"
-        android:layout_height="57dp"
+        android:layout_width="49dp"
+        android:layout_height="53dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="vieweSumm"
@@ -111,7 +74,7 @@
         android:id="@+id/imageButton5"
         android:layout_width="44dp"
         android:layout_height="43dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="3dp"
         android:background="@color/colorPrimary"
         android:contentDescription=""
         android:onClick="resetCountsave"
@@ -125,7 +88,7 @@
         android:id="@+id/textView"
         android:layout_width="103dp"
         android:layout_height="53dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="159dp"
         android:layout_marginEnd="15dp"
         android:gravity="center|left"
@@ -135,8 +98,8 @@
         android:textColorHint="@color/colorAccent"
         android:textColorLink="@color/colorAccent"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -154,7 +117,43 @@
         android:textColorLink="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_t3"
+        app:layout_constraintEnd_toStartOf="@+id/add_t"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/add_t"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        android:onClick="add_t"
+        android:text="@string/add_t"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_t2"
+        app:layout_constraintStart_toEndOf="@+id/checkBox" />
+
+    <Button
+        android:id="@+id/add_t2"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:onClick="add_t2"
+        android:text="@string/add_t2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/t_enter_number"
+        app:layout_constraintStart_toEndOf="@+id/checkBox" />
+
+    <EditText
+        android:id="@+id/t_enter_number"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="3dp"
+        android:ems="10"
+        android:hint="@string/t_enter_number"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:text="@string/t_enter_number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
+        app:layout_constraintStart_toEndOf="@+id/add_t2"
+        tools:text="@string/t_enter_number" />
 
 </android.support.constraint.ConstraintLayout>
